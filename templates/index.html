@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <style>
+        .container{
+            display: flex;
+            gap: 8px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .card{
+            position: relative;
+            border: 1px solid lightgray;
+            border-radius: 10px;
+            width: 300px;
+            height: 400px;
+        }
+        img{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            width: 100%;
+            height: 150px;
+            background-color: rgb(45, 45, 253);
+            filter: blur(1px);
+        }
+        .content{
+            padding: 4px 10px;
+        }
+        span{
+            white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+            position: absolute;
+            top: 0px;
+            background-color: crimson;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 15px;
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            background-color: rgb(55, 55, 255);
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 15px;
+            color: white;
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>News</h1>
+    <div class="container">
+        {% for news in lists %}
+          <div class="card">
+            <img src={{ news.urlToImage }} alt="">
+            <div class="content">
+                <h4>{{news.title}}</h4>
+                <p>{{news.description}}</p>
+                {% if news.author == '' %}
+                <span>Not available</span>
+                {% else %}
+                <span>{{news.author}}</span>
+                {% endif %}
+                <a href={{news.url}} target="_blank" >Read more</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
